@@ -1,0 +1,4 @@
+Creates a running WSO2 ESB 4.8.1 in /opt , on latest Ubuntu. 
+Uses Oracle Java 7.
+
+
