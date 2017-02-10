@@ -1,26 +1,28 @@
-FROM ubuntu:15.04
+FROM ubuntu:latest
 MAINTAINER Vernon Osborne <v.osborne.dev@gmail.com>
-# add : add-apt-repository
+# oracle java 8 , unzip
 RUN \
-        apt-get update && apt-get install -y software-properties-common && \
-        apt-get install -y unzip && apt-get update
-# oracle java 8
-RUN \
- echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
- add-apt-repository -y ppa:webupd8team/java && \
- apt-get update && \
- apt-get install -y oracle-java8-installer && \
- rm -rf /var/lib/apt/lists/* && \
- rm -rf /var/cache/oracle-jdk8-installer
+	apt-get update && \
+	apt-get install -y software-properties-common && \
+	echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+	add-apt-repository -y ppa:webupd8team/java && \
+	apt-get install -y oracle-java8-installer && \
+	apt-get install -y unzip && \
+	apt-get autoclean && \
+	apt-get autoremove && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /var/cache/oracle-jdk8-installer
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $PATH:$JAVA_HOME/bin
 RUN echo 'JAVA_HOME="/usr/lib/jvm/java-8-oracle"' >> /etc/environment
+
 # download and add esb
 RUN \
-        mkdir -p /opt && \
-        wget -P /opt --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download" http://product-dist.wso2.com/products/enterprise-service-bus/4.9.0/wso2esb-4.9.0.zip && \ 
+	mkdir -p /opt && \
+	wget -P /opt --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download" \
+		http://product-dist.wso2.com/products/enterprise-service-bus/4.9.0/wso2esb-4.9.0.zip && \ 
 	unzip /opt/wso2esb-4.9.0.zip -d /opt && \
-        rm /opt/wso2esb-4.9.0.zip
+	rm /opt/wso2esb-4.9.0.zip
 # expose ports (offset=o)
 EXPOSE 9763 9443 8280 8243
 CMD /bin/bash /opt/wso2esb-4.9.0/bin/wso2server.sh
