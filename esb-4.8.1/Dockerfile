@@ -23,4 +23,4 @@ RUN \
         rm /opt/wso2esb-4.9.0.zip
 # expose ports (offset=o)
 EXPOSE 9763 9443 8280 8243
-CMD /bin/bash /opt/wso2esb-4.9.0/wso2server.sh
+CMD /bin/bash /opt/wso2esb-4.9.0/bin/wso2server.sh
