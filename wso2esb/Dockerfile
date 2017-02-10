@@ -1,4 +1,4 @@
-FROM vozzy:base-image
+FROM vozzy/wso2base:latest
 MAINTAINER Vernon Osborne <v.osborne.dev@gmail.com>
 # download and add esb
 RUN \
