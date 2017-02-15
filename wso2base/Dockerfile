@@ -1,10 +1,10 @@
+LABEL maintainer "v.osborne.dev@gmail.com"
+# ---------------
 FROM ubuntu:14.04
-MAINTAINER Vernon Osborne <v.osborne.dev@gmail.com>
-
 # environment variables
 ENV JAVA_VERSION 8
-ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-oracle
-ENV PATH $PATH:$JAVA_HOME/bin
+		JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-oracle
+		PATH $PATH:$JAVA_HOME/bin
 # add packages
 RUN \
 	apt-get update && apt-get install -y \

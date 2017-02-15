@@ -1,5 +1,6 @@
+LABEL maintainer "v.osborne.dev@gmail.com"
+# -----------------------
 FROM vozzy/wso2base:latest
-MAINTAINER Vernon Osborne <v.osborne.dev@gmail.com>
 # am version
 ENV AM_VERSION=1.10.0
 # download and add am
